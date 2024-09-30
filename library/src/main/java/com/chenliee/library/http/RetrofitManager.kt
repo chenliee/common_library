@@ -1,5 +1,6 @@
 package com.chenliee.library.http
 
+import com.chenliee.library.Global
 import com.chenliee.library.utils.OkHttpUtil
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
@@ -24,7 +25,15 @@ class RetrofitManager private constructor() {
             .readTimeout(DEFAULT_READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
             .writeTimeout(DEFAULT_WRITE_TIME_OUT.toLong(), TimeUnit.SECONDS)
         builder.addNetworkInterceptor(StethoInterceptor())
-
+        builder.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader(
+                    "Authorization",
+                    "Bearer ${Global.token}"
+                ) // 添加token到header中
+                .build()
+            chain.proceed(request)
+        }
         // 创建Retrofit
         retrofit = Retrofit.Builder()
             .client(builder.build())

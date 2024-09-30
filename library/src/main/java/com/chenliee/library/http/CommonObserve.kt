@@ -32,6 +32,7 @@ open class CommonObserve {
             .onErrorResumeNext { throwable->
                 if (throwable is HttpException) {
                     val response = throwable.response()
+                    Log.e("123",response.toString())
                     if (response != null && !response.isSuccessful) {
                         val errorBody = response.errorBody()?.string()
                         val errorMessage = Gson().fromJson(

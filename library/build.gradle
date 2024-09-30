@@ -24,15 +24,15 @@ android {
 
     flavorDimensions "environment"
     productFlavors {
-        DEV {
+        dev {
             dimension "environment"
             buildConfigField "String", "APP_DOMAIN", "\"https://gateway.dev.heyday-catering.com:20443\""
         }
-        UAT {
+        uat {
             dimension "environment"
             buildConfigField "String", "APP_DOMAIN", "\"https://gateway.uat.heyday-catering.com\""
         }
-        PRO {
+        pro {
             dimension "environment"
             buildConfigField "String", "APP_DOMAIN", "\"https://gateway.heyday-catering.com\""
         }

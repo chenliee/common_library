@@ -68,14 +68,14 @@ class OkHttpUtil private constructor() {
     }
 
     companion object {
-        private var BASE_URL: String = setBaseUrl(BuildConfig.FLAVOR)
+        private var BASE_URL: String = BuildConfig.APP_DOMAIN
         private var instance: OkHttpUtil? = null
 
         private fun setBaseUrl(env: String): String{
             return when(env){
-                "DEV" -> Global.devUrl
-                "UAT" -> Global.uatUrl
-                "PRO" -> Global.proUrl
+                "dev" -> Global.devUrl
+                "uat" -> Global.uatUrl
+                "pro" -> Global.proUrl
                 else -> ""
             }
         }
